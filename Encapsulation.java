@@ -39,13 +39,13 @@ public class Main {
 			System.out.println();
 			break;
 			case 3 : System.out.println("Delete collection (Type title/genre/year) : ");
-			String del = sc.next();
+			String del = sc.nextLine();
 			col.delete(del);//call delete method
 			check = false;//check = false for continuing the loop
 			System.out.println();
 			break;
 			case 4 : System.out.println("Find collection (Type title/genre/year) : ");
-			String data = sc.next();
+			String data = sc.nextLine();
 			col.find(data);	//call find method
 			check = false;//check = false for continuing the loop
 			System.out.println();
@@ -108,13 +108,13 @@ class Collection{
 	public void find(String a) {//find data
 		for(int i = 0; i < title.size(); i++) {//search data index by index
 		if(title.get(i).contains(a)) {//if there is(are) data(s) from the title arraylist
-			System.out.println(title.get(i) +" "+genre.get(i)+" "+year.get(i));
+			System.out.println(title.get(i) +" ("+genre.get(i)+", "+year.get(i)+")");
 		}
 		else if(genre.get(i).contains(a)) {//if there is(are) data(s) from the genre arraylist
-			System.out.println(title.get(i) +" "+genre.get(i)+" "+year.get(i));
+			System.out.println(title.get(i) +" ("+genre.get(i)+", "+year.get(i)+")");
 		}
 		else if(year.get(i).contains(a)) {//if there is(are) data(s) from the genre arraylist
-			System.out.println(title.get(i) +" "+genre.get(i)+" "+year.get(i));
+			System.out.println(title.get(i) +" ("+genre.get(i)+", "+year.get(i)+")");
 		}
 	}
 	}
