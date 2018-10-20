@@ -1,11 +1,10 @@
-
 //Hakikid Amana
 //M0517019
 //Informatika 2017
 
 import java.util.*;
 
-public class Encapsulation {
+public class Main {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);//create Scanner object
@@ -13,19 +12,23 @@ public class Encapsulation {
 			boolean check = false; //initialize check variable for looping
 			
 			while(check == false) {
-			System.out.println("Masukkan perintah :\n1. Insert film data\n2. Show film collection\n3. Delete data\n4. Find film\n5. Out");
-			int select = 0;
-			select = sc.nextInt();//scan integer data type from input for switch case
+			System.out.println("Insert Command :\n1. Insert film data\n2. Show film collection\n3. Delete data\n4. Find film\n5. Out");
+			int option = 0;//scan integer data type from input for switch case
 			check = true;
-			switch(select) {
+			try {
+			    option = Integer.parseInt(sc.nextLine());//using nextLine and parsing it because of nextLine usage in switch case
+			} catch (NumberFormatException e) {
+			    e.printStackTrace();
+			}
+			switch(option) {
 			case 1 : System.out.println("Insert film title :");
-			String title = sc.next();
+			String title = sc.nextLine();//nextLine for input with more than 1 word
 			col.setTitle(title);//add input to title arraylist
 			System.out.println("Insert film genre : ");
-			String genre = sc.next();
+			String genre = sc.nextLine();
 			col.setGenre(genre);//add input to genre arraylist
 			System.out.println("Insert film release year :");
-			String year = sc.next();
+			String year = sc.nextLine();
 			col.setYear(year);//add input to year arraylist
 			System.out.println();
 			check = false;//check = false for continuing the loop
@@ -77,7 +80,7 @@ class Collection{
 
 	public void showCollection() {//show title, genre, & year arraylist 
 		for(int i = 0; i < title.size(); i++) { 
-			System.out.println(i+1+". "+title.get(i) +" "+genre.get(i)+" "+year.get(i));
+			System.out.println(i+1+". "+title.get(i) +" ("+genre.get(i)+", "+year.get(i)+")");
 		}
 	}
 	
