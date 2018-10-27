@@ -1,4 +1,8 @@
 import java.util.*;
+//Hakikid Amana
+//M0517019
+//Informatika 2017
+//reference : http://www.csgnetwork.com/temp2conv.html
 public class tempConverter {
 
 	public static void main(String[] args) {
