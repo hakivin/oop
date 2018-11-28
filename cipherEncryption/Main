@@ -1,0 +1,31 @@
+import java.util.Scanner;
+	
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner input = new Scanner(System.in);
+		boolean flag = true;
+		int option;
+		String text;
+		System.out.print("Insert shift: ");
+		int shift = input.nextInt() % 26;	
+		Cipher cipher = new Cipher(shift);
+
+		while(flag == true) {
+			System.out.println("\n1. Encrypt text\n2. Decrypt text\n3. Out");
+			System.out.print("Option: "); option = input.nextInt();
+			switch(option) {
+			case 1: System.out.print("Insert text: ");
+			text = input.next();
+			System.out.println(cipher.encrypt(text));
+			break;
+			case 2: System.out.print("Insert text: ");
+			text = input.next();
+			System.out.println(cipher.decrypt(text));
+			break;
+			default: flag = false;
+			}
+		}
+	}
+}
