@@ -1,0 +1,16 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		QuestionGenerator test = new QuestionGenerator();
+		Scanner input = new Scanner(System.in);
+		System.out.print("Insert the amount of questions: ");
+		test.setn(input.nextInt());
+		System.out.println();
+		test.printBank();
+		System.out.println("Score: "+test.getScore());
+		input.close();
+	}
+}
