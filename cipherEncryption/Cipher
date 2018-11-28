@@ -1,0 +1,33 @@
+public class Cipher {
+	private int shift;
+	
+	public Cipher(int shift) {
+		this.shift = shift;
+	}
+	
+	public String encrypt(String msg){
+	    String s = "";
+	    int len = msg.length();
+	    for(int x = 0; x < len; x++){
+	        char c = (char)(msg.charAt(x) + shift);
+	        if (c > 'z' || (Character.isUpperCase((char)(msg.charAt(x))) && c > 'Z'))
+	            s += (char)(msg.charAt(x) - (26-shift));
+	        else
+	            s += (char)(msg.charAt(x) + shift);
+	    }
+	    return s;	    
+	}
+	
+	public String decrypt(String msg) {
+		String s = "";
+	    int len = msg.length();
+	    for(int x = 0; x < len; x++){
+	        char c = (char)(msg.charAt(x) - shift);
+	        if ((c < 'a' && Character.isLowerCase((char)(msg.charAt(x)))) || c < 'A')
+	            s += (char)(msg.charAt(x) + (26-shift));
+	        else
+	            s += (char)(msg.charAt(x) - shift);
+	    }
+	    return s;
+	}
+}
