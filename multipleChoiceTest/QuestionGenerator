@@ -1,0 +1,76 @@
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.*;
+
+public class QuestionGenerator {//this class is used to generate questions
+	private ArrayList<Question> bank = new ArrayList<Question>();//arraylist to store questions
+	private Scanner input = null;
+	private int correct = 0;
+	private int n = 0;
+	private int[] randomQuestion;
+	private Random rand = new Random();
+	private HashSet<Integer> repo = new HashSet<Integer>();//set to store the answer
+	private int flag = 0;
+	
+	public void setn(Integer n) {
+		this.n = n;
+	}
+	
+	public int[] toInt(HashSet<Integer> set) {//insert set elements into int array
+		  int[] a = new int[set.size()];
+		  int i = 0;
+		  for (Integer val : set) 
+			  a[i++] = val;
+		  return a;
+		}
+	
+	public void generate() {//generate random question
+		
+		while(repo.size() < n) {
+			int x = rand.nextInt(flag);
+			repo.add(x);
+		}
+		this.randomQuestion = toInt(repo);
+	}
+	
+	void insertToBank() {//insert .txt file to arraylist
+		try {
+			input = new Scanner(new FileReader("database_soal.txt"));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		for(int z = 0;; z++) {//infinite loop
+			try {
+				Question q = new Question();
+				q.setQuestion(input.nextLine(),input.nextLine(),input.nextLine(),input.nextLine(),input.nextLine(),input.nextLine());
+				bank.add(q);
+			}
+			catch(NoSuchElementException e) {//stop when the .txt file empty
+				flag = z;
+				break;
+			}
+		}
+	}
+	
+	public void printBank() {//print all questions
+		Scanner sc = new Scanner(System.in);
+		insertToBank();
+		generate();
+		for(int z = 0; z < n; z++) {
+			Question x = bank.get(randomQuestion[z]);
+			System.out.print(z+1 + ". ");
+			x.printQuestion();
+			System.out.print("Choice: ");
+			if(x.insertAnswer(sc.nextLine())) 
+				correct += 1;
+			System.out.println();
+		}
+		sc.close();
+	}
+	
+	public int getScore() {//get score
+		return this.correct *100 / n;
+	}
+}
