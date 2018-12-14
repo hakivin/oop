@@ -1,0 +1,34 @@
+class Music{
+	private static boolean status = false;
+	private static File soundFile = new File( "src/resource/music.wav" );
+	private static AudioInputStream audioInputStream = null;
+	private static Clip clip = null;
+	
+	public Music() {
+		if(status == false)
+			musicPlay();
+	}
+	public static void musicPlay() {	
+		try {
+			audioInputStream = AudioSystem.getAudioInputStream( soundFile );
+			clip = AudioSystem.getClip();
+			clip.open(audioInputStream);
+			clip.loop(clip.LOOP_CONTINUOUSLY);
+		} catch (UnsupportedAudioFileException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (LineUnavailableException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		status = true;
+	}
+	
+	public static void musicStop() {
+		clip.stop();
+		status = false;
+	}
+}
